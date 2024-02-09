@@ -1,17 +1,18 @@
 //
-//  NetworkManger.swift
+//  NetworkManager.swift
 //  RadioJemne
 //
 //  Created by Samuel Brezoňák on 06/02/2024.
 //
 
 import UIKit
-class NetworkManger {
+
+class NetworkManager {
     
     let decoder = JSONDecoder()
     
-    
     func getSongHistory() async throws -> [Song] {
+        print("getting history")
         let endpoint = "https://www.radiomelody.sk/wp-json/radio/v1/playlist"
         
         guard let url = URL(string: endpoint) else {
@@ -26,15 +27,16 @@ class NetworkManger {
         
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         
         do {
             return try decoder.decode([Song].self, from: data)
         } catch {
+            debugPrint("Decode error", error)
             throw NetworkError.decodingError
         }
     }
 }
-
 
 enum NetworkError: Error {
     case invalidURL
