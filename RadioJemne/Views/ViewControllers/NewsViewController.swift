@@ -95,7 +95,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = article.newsTitle
         cell.summaryLabel.text = article.newsSummary
         cell.dateLabel.text = article.datePublished?.formatted(date: .numeric, time: .omitted)
-        cell.thumbnail.sd_setImage(with: URL(string: article.thumbnailUrl! ), placeholderImage: UIImage(resource: .placeholderImg))
+        cell.thumbnail.sd_setImage(with: URL(string: article.thumbnailUrl! ), placeholderImage: UIImage(resource: .placeholder))
     }
 }
 
