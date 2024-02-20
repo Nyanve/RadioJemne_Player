@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Placeholder - Jemné.png",
+      "filename" : "PlaceholderJemne.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Placeholder - Jemné@2x.png",
+      "filename" : "PlaceholderJemne@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Placeholder - Jemné@3x.png",
+      "filename" : "PlaceholderJemne@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
