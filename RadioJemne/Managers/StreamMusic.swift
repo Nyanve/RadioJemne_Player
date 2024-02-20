@@ -9,60 +9,104 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
+//import VolumeButtonHandler
 
 protocol StreamMusicDelegate: AnyObject {
     func sendVolumeValue(_ streamMusic: StreamMusic, volumeChangedTo: Float)
     func sendSongData(_ streamMusic: StreamMusic, songTitle: String, songArtist: String)
+    func playerFailed()
 }
-
 
 class StreamMusic: NSObject {
     
     let urlString: String = "https://stream.bauermedia.sk/melody-lo.mp3"
-    var player: AVPlayer? = nil
-    var playerItem: AVPlayerItem?
-    var metadataOutput: AVPlayerItemMetadataOutput?
-    
-    weak var delegate: StreamMusicDelegate?
-    
-    var artist = "---"
+    var artist = ""
     var title = "Radio Jemne"
-    let image = UIImage(resource: ImageResource.rjMusic )
+    let image = UIImage(resource: ImageResource.rjMusic)
+    var volumeValue: Float!
+    
+    var player: AVPlayer? = nil
+    var playerItem: AVPlayerItem!
+    var metadataOutput: AVPlayerItemMetadataOutput?
+    weak var delegate: StreamMusicDelegate?
+//    private var volumeHandler = VolumeButtonHandler()
     
     
-    func setUpConnection() {
+    @discardableResult @objc public func play() -> MPRemoteCommandHandlerStatus {
+        setUpConnection()
+        guard let player else {
+            return .commandFailed
+        }
+        return .success
+    }
+ 
+    @discardableResult @objc public func pause() -> MPRemoteCommandHandlerStatus {
+        guard let player else {
+            return .commandFailed
+        }
+        player.pause()
+        return .success
+    }
+
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            if let volumeValue = change?[.newKey] as? Float {
+                delegate?.sendVolumeValue(self, volumeChangedTo: volumeValue)
+            } else {
+                debugPrint("The new value is not a float or is nil")
+            }
+        }
+        if keyPath == #keyPath(AVPlayer.status) {
+            if let newStatusNumber = change?[.newKey] as? NSNumber,
+               let newStatus = AVPlayer.Status(rawValue: newStatusNumber.intValue) {
+                if newStatus == .failed {
+                    delegate?.playerFailed()
+                }
+            }
+        }
+    }
+    
+//    func handleVolumeChange() {
+//        
+//        volumeHandler.upBlock = {
+//            self.volumeValue = self.volumeHandler.currentVolume
+//            self.delegate?.sendVolumeValue(self, volumeChangedTo: self.volumeValue)
+//            debugPrint("Up block")
+//        }
+//        volumeHandler.downBlock = {
+//            self.volumeValue = self.volumeHandler.currentVolume
+//            self.delegate?.sendVolumeValue(self, volumeChangedTo: self.volumeValue)
+//            debugPrint("Down block")
+//        }
+//    }
+    
+    private func setUpConnection() {
         let url = URL(string: urlString)!
         metadataOutput = AVPlayerItemMetadataOutput(identifiers: nil)
-        
-        let playerItem = AVPlayerItem(url: url)
+        playerItem = AVPlayerItem(url: url)
         playerItem.add(metadataOutput!)
-        player = AVPlayer(playerItem: playerItem)
         
+        player = AVPlayer(playerItem: self.playerItem)
+        player?.volume = 0.5
+        player?.play()
         
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
-            print("Playback OK")
             try AVAudioSession.sharedInstance().setActive(true)
-            print("Session is Active")
         } catch {
-            print("some shit dont work", error)
+            debugPrint("Stream connection", error)
         }
         
         AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: .new, context: nil)
-        player?.volume = 0.5
+        player?.addObserver(self, forKeyPath: #keyPath(AVPlayer.status), options: [.new, .initial], context: nil)
         playerItem.addObserver(self, forKeyPath: "timedMetadata", options: .new, context: nil)
         musicBeganPlaying()
-        player?.play()
-        
     }
-
-        
-    @objc private func musicBeganPlaying() {
+    
+    private func musicBeganPlaying() {
         UIApplication.shared.beginReceivingRemoteControlEvents()
         addActionsToControlCenter()
-        
         metadataOutput?.setDelegate(self, queue: DispatchQueue.main)
-        
         
         MPNowPlayingInfoCenter.default().playbackState = .playing
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
@@ -73,8 +117,7 @@ class StreamMusic: NSObject {
             }
         ]
     }
-    
-    
+
     private func newPlayingInfo() {
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [
             MPMediaItemPropertyTitle: title,
@@ -84,76 +127,37 @@ class StreamMusic: NSObject {
             }
         ]
     }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "outputVolume" {
-            if let volumeValue = change?[.newKey] as? Float {
-                delegate?.sendVolumeValue(self, volumeChangedTo: volumeValue)
-            } else {
-                print("The new value is not a float or is nil")
-            }
-        }
-    }
-    
-    
-    func addActionsToControlCenter() {
+
+    private func addActionsToControlCenter() {
         addActionToPauseCommand()
         addActionToPlayCommand()
     }
     
-    
-    func addActionToPlayCommand(){
+    private func addActionToPlayCommand(){
         MPRemoteCommandCenter.shared().playCommand.isEnabled = true
         MPRemoteCommandCenter.shared().playCommand.addTarget(self, action: #selector(play))
     }
-    
-    
-    func addActionToPauseCommand(){
+
+    private func addActionToPauseCommand(){
         MPRemoteCommandCenter.shared().pauseCommand.isEnabled = true
         MPRemoteCommandCenter.shared().pauseCommand.addTarget(self, action: #selector(pause))
     }
     
-    
-    @discardableResult @objc public func play() -> MPRemoteCommandHandlerStatus {
-        if player == nil {
-            setUpConnection()
-        }
-        guard let player else {
-            return .commandFailed
-        }
-        player.play()
-        return .success
-    }
- 
-    
-    @discardableResult @objc public func pause() -> MPRemoteCommandHandlerStatus {
-        guard let player else {
-            return .commandFailed
-        }
-        player.pause()
-        return .success
-    }
-    
-
-    func extractMetadata(from songName: String) {
-        // Split the string based on the separator "-"
+    private func extractMetadata(from songName: String) {
         let components = songName.components(separatedBy: "-")
         
-        // If there are exactly two components, assume artist and title
         if components.count == 2 {
             artist = components[0].trimmingCharacters(in: .whitespacesAndNewlines)
             title = components[1].trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
-            // If there's only one component, assume it's the artist
-            title = "Radio Jemné"
+            title = "Radio Jemne"
             artist = songName.trimmingCharacters(in: .whitespacesAndNewlines)
         }
+        
         delegate?.sendSongData(self, songTitle: title, songArtist: artist)
         newPlayingInfo()
     }
 }
-
 
 
 extension StreamMusic: AVPlayerItemMetadataOutputPushDelegate {
@@ -162,7 +166,6 @@ extension StreamMusic: AVPlayerItemMetadataOutputPushDelegate {
             for item in group.items {
                 if let songData = item.value as? String {
                     extractMetadata(from: songData)
-                    print ("song data: ",songData)
                 }
             }
         }

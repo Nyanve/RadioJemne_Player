@@ -40,24 +40,19 @@ class ViewController: UIViewController {
     let swipeGesture = UISwipeGestureRecognizer()
     
     lazy var fetchedResultsController: NSFetchedResultsController<SongHistory> = {
-//        let fetchRequest: NSFetchRequest<SongHistory> = SongHistory.fetchRequest()
-        let fetchRequest = NSFetchRequest<SongHistory>(entityName: "SongHistory")
-        
+        let fetchRequest: NSFetchRequest<SongHistory> = SongHistory.fetchRequest()
+
         let dateSort = NSSortDescriptor(key: #keyPath(SongHistory.date), ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
-        //fetchRequest.fetchLimit = 7
+        fetchRequest.fetchLimit = 7
         
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil
-        )
-        
-//        fetchedResultsController.delegate = self
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
     }()
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+
         swipeGesture.direction = .down
         swipeGesture.addTarget(self, action: #selector(swipeHappened(_:)))
         self.view.addGestureRecognizer(swipeGesture)
@@ -67,8 +62,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(applicationWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
         tableView.dataSource = self
-        tableView.delegate = self
-        
+    
         fetchedResultsController.delegate = self
         
         do {
@@ -78,74 +72,43 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    @IBAction func newsButton(_ sender: Any) {
+    }
+    
     @IBAction func showHistoryButton(_ sender: Any) {
-        Task {
-            do {
-                let songs = try await networkManager.getSongHistory()
-                await CoreDataManager.shared.saveSongsIntoCoreData(songs)
-            } catch {
-                debugPrint("Load playlist songs error", error)
-            }
-        }
+        updateAndLoadHistoryData()
         showHistoryView()
-    }
-    
-    func showHistoryView() {
-        isHistoryOn = true
-        UIView.animate(withDuration: 0.3) {
-            self.cornerButtonsView.alpha = 0
-            self.cornerButtonsViewTopAnchor.constant = -70
-            self.closeHistoryButtonTopAnchor.constant = 75
-            self.closeHistoryButton.alpha = 1
-            self.historyViewBottomAnchor.constant = 0
-            self.RJLogoTopAnchor.constant = 40
-            self.view.layoutIfNeeded()
-        }
-    }
-    
-    func hideHistoryView() {
-        isHistoryOn = false
-        UIView.animate(withDuration: 0.3){
-            self.cornerButtonsView.alpha = 1
-            self.cornerButtonsViewTopAnchor.constant = 0
-            self.closeHistoryButtonTopAnchor.constant = 170
-            self.closeHistoryButton.alpha = 0
-            self.historyViewBottomAnchor.constant = -600
-            self.RJLogoTopAnchor.constant = 180
-            self.view.layoutIfNeeded()
-        }
     }
     
     @IBAction func closeHistoryButton(_ sender: Any) {
         hideHistoryView()
     }
-    
 
     @IBAction func shareButton(_ sender: Any) {
         shareLink()
     }
     
-    
     @IBAction func CallButton(_ sender: Any) {
         callToRadio()
     }
     
-    
     @IBAction func messageButton(_ sender: Any) {
         messageToRadio()
     }
-    
 
     @IBAction func mailButton(_ sender: Any) {
         choseMailActionSheet()
     }
     
-    
     @IBAction func infoButton(_ sender: Any) {
         swipeGesture.direction = .down
         animatedSwipe()
     }
-    
     
     @IBAction func volumeSlider(_ slider: UISlider) {
         stream.player?.volume = slider.value
@@ -163,8 +126,12 @@ class ViewController: UIViewController {
         }
     }
     
-
-    
+    @objc func applicationWillEnterForeground(_ application: UIApplication) {
+        if !(stream.player?.rate != 0 && stream.player?.error == nil) {
+            isPlayButtonOn.toggle()
+            playPauseButton.setImage(UIImage(resource: .playIcon), for: .normal)
+        }
+    }
     
     @objc private func swipeHappened(_ swiperRecognizers: UISwipeGestureRecognizer) {
         if swiperRecognizers.state == .ended {
@@ -172,12 +139,16 @@ class ViewController: UIViewController {
         }
     }
     
-    
-    func volumeDidChange(notification: NSNotification) {
-        let volume = notification.userInfo!["AVSystemController_AudioVolumeNotificationParameter"] as! Float
-        print(volume)
+    private func updateAndLoadHistoryData() {
+        Task {
+            do {
+                let songs = try await networkManager.getSongHistory()
+                CoreDataManager.shared.saveSongsIntoCoreData(songs)
+            } catch {
+                debugPrint("Load playlist songs error", error)
+            }
+        }
     }
-
 
     private func shareLink() {
         guard let url = URL(string: "https://www.radiomelody.sk/stream/") else {
@@ -188,7 +159,34 @@ class ViewController: UIViewController {
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(activityViewController, animated: true)
     }
-
+    
+    private func showHistoryView() {
+        isHistoryOn = true
+        
+        UIView.animate(withDuration: 0.3) {
+            self.cornerButtonsView.alpha = 0
+            self.cornerButtonsViewTopAnchor.constant = -70
+            self.closeHistoryButtonTopAnchor.constant = 75
+            self.closeHistoryButton.alpha = 1
+            self.historyViewBottomAnchor.constant = 0
+            self.RJLogoTopAnchor.constant = 40
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    private func hideHistoryView() {
+        isHistoryOn = false
+        
+        UIView.animate(withDuration: 0.3){
+            self.cornerButtonsView.alpha = 1
+            self.cornerButtonsViewTopAnchor.constant = 0
+            self.closeHistoryButtonTopAnchor.constant = 170
+            self.closeHistoryButton.alpha = 0
+            self.historyViewBottomAnchor.constant = -600
+            self.RJLogoTopAnchor.constant = 180
+            self.view.layoutIfNeeded()
+        }
+    }
     
     private func animatedSwipe() {
         if !isHistoryOn {
@@ -216,7 +214,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     private func callToRadio() {
         if let phoneCallURL = URL(string: "telprompt://\(mPhoneNumber)") {
             let application:UIApplication = UIApplication.shared
@@ -227,7 +224,6 @@ class ViewController: UIViewController {
                 application.open(phoneCallURL, options: [:], completionHandler: nil)
         }
     }
-    
     
     private func messageToRadio() {
         guard MFMessageComposeViewController.canSendText() else {
@@ -241,7 +237,6 @@ class ViewController: UIViewController {
             self.present(controller, animated: true, completion: nil)
     }
     
-    
     private func sendEmail(address: String) {
         guard MFMailComposeViewController.canSendMail() else {
             basicError(message: "Unable to send email. Please try again later")
@@ -253,7 +248,6 @@ class ViewController: UIViewController {
             mail.setMessageBody("You're so awesome!", isHTML: true)
             present(mail, animated: true)
     }
-    
     
     private func choseMailActionSheet() {
         let studio = "studio@radiomelody.sk"
@@ -273,12 +267,11 @@ class ViewController: UIViewController {
         })
     }
     
-    
-    @objc func applicationWillEnterForeground(_ application: UIApplication) {
-        if !(stream.player?.rate != 0 && stream.player?.error == nil) {
-            isPlayButtonOn.toggle()
-            playPauseButton.setImage(UIImage(resource: .playIcon), for: .normal)
-        }
+    private func basicError(message: String) {
+        let error = UIAlertController(title: "Error occurred 😏", message: message, preferredStyle: .alert)
+        error.addAction(UIAlertAction(title: "Ok", style: .cancel))
+        
+        self.present(error, animated: true)
     }
 }
 
@@ -296,41 +289,36 @@ extension ViewController: MFMessageComposeViewControllerDelegate {
 }
 
 extension ViewController: StreamMusicDelegate {
+    func playerFailed() {
+        isPlayButtonOn.toggle()
+    
+        let stringWithImage = NSMutableAttributedString(string: "We were unable to set up player. Pleas try again")
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(resource: .varningIcon)
+        let completeImageString = NSAttributedString(attachment: imageAttachment)
+        
+        stringWithImage.insert(completeImageString, at: 0)
+        artistLabel.attributedText = stringWithImage
+        songNameLabel.text = ""
+        playPauseButton.setImage(UIImage(resource: .revindIcon), for: .normal)
+    }
+    
     func sendSongData(_ streamMusic: StreamMusic, songTitle: String, songArtist: String) {
         songNameLabel.text = songTitle
         artistLabel.text = songArtist
+        updateAndLoadHistoryData()
         return
     }
     
     func sendVolumeValue(_ streamMusic: StreamMusic, volumeChangedTo: Float) {
         volumeSlider.value = volumeChangedTo
-        print("uhun:" ,volumeChangedTo)
         return
     }
 }
 
-
-
-
-// MARK: - Delegates
-
-extension ViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: CatHeader.reuseIdentifier) as! CatHeader
-//        //        let header = "Header"
-//        let sectionInfo = coreDataFetchedResults.controller.sections?[section]
-//        let header = sectionInfo?.name
-//        view.item = header
-//        return view
-//    }
-}
-
-// MARK: - Datasources
-
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fetchedResultsController.fetchedObjects?.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -352,7 +340,6 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
-
 extension ViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -362,14 +349,12 @@ extension ViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
-            print("insert")
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
             
         case .delete:
             tableView.deleteRows(at: [indexPath!], with: .automatic)
             
         case .update:
-            print("hehe")
             let cell = tableView.cellForRow(at: indexPath!) as! SongTableViewCell
             let song = fetchedResultsController.object(at: newIndexPath!)
             configure(cell: cell, with: song, indexPath: newIndexPath!)
@@ -379,7 +364,7 @@ extension ViewController: NSFetchedResultsControllerDelegate {
             tableView.insertRows(at: [newIndexPath!], with: .automatic)
             
         @unknown default:
-            print("Unexpected NSFetchedResultsChangeType")
+            debugPrint("Unexpected NSFetchedResultsChangeType")
         }
     }
     
