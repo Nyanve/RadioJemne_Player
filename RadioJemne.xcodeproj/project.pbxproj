@@ -15,11 +15,9 @@
 		3B48A7BC2B739D1A00FC8FA1 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7BB2B739D1A00FC8FA1 /* SongTableViewCell.swift */; };
 		3B4FEAD12B82A63400F8E678 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4FEAD02B82A63400F8E678 /* SDWebImageSwiftUI */; };
 		3B6D1C162B83DA28002C6284 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D1C152B83DA28002C6284 /* WebViewController.swift */; };
-		3B6D1C1A2B84EB4F002C6284 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D1C192B84EB4F002C6284 /* File.swift */; };
 		3B9221FE2B7F5F1B0050AB55 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9221FD2B7F5F1B0050AB55 /* NewsViewController.swift */; };
 		3B9222032B7F9AFB0050AB55 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 3B9222022B7F9AFB0050AB55 /* SwiftyXMLParser */; };
 		3B9222062B7FC1030050AB55 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9222052B7FC1030050AB55 /* NewsTableViewCell.swift */; };
-		3B9222082B8119020050AB55 /* SongHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */; };
 		3BAD9FA12B67AD14006263DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA02B67AD14006263DF /* AppDelegate.swift */; };
 		3BAD9FA32B67AD14006263DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */; };
 		3BAD9FA52B67AD14006263DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA42B67AD14006263DF /* ViewController.swift */; };
@@ -57,10 +55,8 @@
 		3B48A7B52B72601200FC8FA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3B48A7BB2B739D1A00FC8FA1 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		3B6D1C152B83DA28002C6284 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		3B6D1C192B84EB4F002C6284 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		3B9221FD2B7F5F1B0050AB55 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		3B9222052B7FC1030050AB55 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SongHistory+CoreDataClass.swift"; path = "../../../../../.Trash/SongHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BAD9F9D2B67AD14006263DF /* RadioJemne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioJemne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD9FA02B67AD14006263DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,7 +139,6 @@
 				3BAD9FA62B67AD14006263DF /* Main.storyboard */,
 				3B6D1C182B84B06B002C6284 /* ViewControllers */,
 				3B6D1C172B84B047002C6284 /* ViewCells */,
-				3B6D1C192B84EB4F002C6284 /* File.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -170,7 +165,6 @@
 		3B7BF1B22B6BCF9400BCC74E /* SongHistoryData */ = {
 			isa = PBXGroup;
 			children = (
-				3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */,
 			);
 			path = SongHistoryData;
 			sourceTree = "<group>";
@@ -377,11 +371,9 @@
 				3B2EA98F2B7B960F00D39235 /* News.swift in Sources */,
 				3B9222062B7FC1030050AB55 /* NewsTableViewCell.swift in Sources */,
 				3BAD9FA12B67AD14006263DF /* AppDelegate.swift in Sources */,
-				3B6D1C1A2B84EB4F002C6284 /* File.swift in Sources */,
 				3B48A7B22B724F5800FC8FA1 /* CoreDataManager.swift in Sources */,
 				3BAD9FA32B67AD14006263DF /* SceneDelegate.swift in Sources */,
 				3B6D1C162B83DA28002C6284 /* WebViewController.swift in Sources */,
-				3B9222082B8119020050AB55 /* SongHistory+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
