@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 import SDWebImage
 
-
 class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
@@ -23,7 +22,6 @@ class NewsViewController: UIViewController {
         let dateSort = NSSortDescriptor(key: #keyPath(NewsList.datePublished), ascending: false)
         fetchRequest.sortDescriptors = [dateSort]
 
-        
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
     }()
@@ -53,7 +51,6 @@ class NewsViewController: UIViewController {
             do {
                 let news = try await networkManager.getNews()
                 CoreDataManager.shared.saveNewsIntoCoreData(news)
-                
             } catch {
                 debugPrint("Load news articles error", error)
             }
@@ -76,6 +73,7 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
         guard let webVC = storyboard?.instantiateViewController(withIdentifier: "WebViewController") as? WebViewController else {
             return
         }
+        
         webVC.urlString = url
         navigationController?.pushViewController(webVC, animated: true)
     }

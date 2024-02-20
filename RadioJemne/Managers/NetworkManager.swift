@@ -51,7 +51,7 @@ class NetworkManager {
             throw NetworkError.invalidResponse
         }
         
-        let xml = try XML.parse(data)
+        let xml = XML.parse(data)
         
         var newsArray: [News] = []
         dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
@@ -75,7 +75,6 @@ class NetworkManager {
         return newsArray
     }
 }
-
 
 enum NetworkError: Error {
     case invalidURL

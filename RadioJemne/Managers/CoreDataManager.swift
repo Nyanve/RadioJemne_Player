@@ -13,7 +13,6 @@ class CoreDataManager {
     static let shared = CoreDataManager()
     
     lazy var persistentContainer: NSPersistentContainer = {
-        
         let container = NSPersistentContainer(name: "RadioJemne")
         
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in

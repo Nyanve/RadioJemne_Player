@@ -28,6 +28,7 @@
 		3BAD9FC52B67AD16006263DF /* RadioJemneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC42B67AD16006263DF /* RadioJemneUITests.swift */; };
 		3BAD9FC72B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC62B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift */; };
 		3BD3C8922B84F1C500954902 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3BD3C8912B84F1C500954902 /* SDWebImageSwiftUI */; };
+		3BD3C8952B852BF900954902 /* SendableAVMetadataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3C8942B852BF900954902 /* SendableAVMetadataItem.swift */; };
 		3BFD53C52B6D02AE00D765BA /* StreamMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,8 @@
 		3BAD9FC02B67AD16006263DF /* RadioJemneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioJemneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD9FC42B67AD16006263DF /* RadioJemneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioJemneUITests.swift; sourceTree = "<group>"; };
 		3BAD9FC62B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioJemneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BD3C8932B8501AF00954902 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3BD3C8942B852BF900954902 /* SendableAVMetadataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendableAVMetadataItem.swift; sourceTree = "<group>"; };
 		3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMusic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +123,7 @@
 				3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */,
 				3B48A7B12B724F5800FC8FA1 /* CoreDataManager.swift */,
 				3B48A7B52B72601200FC8FA1 /* NetworkManager.swift */,
+				3BD3C8942B852BF900954902 /* SendableAVMetadataItem.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -165,6 +169,7 @@
 		3BAD9F942B67AD14006263DF = {
 			isa = PBXGroup;
 			children = (
+				3BD3C8932B8501AF00954902 /* README.md */,
 				3BAD9F9F2B67AD14006263DF /* RadioJemne */,
 				3BAD9FB92B67AD16006263DF /* RadioJemneTests */,
 				3BAD9FC32B67AD16006263DF /* RadioJemneUITests */,
@@ -307,7 +312,6 @@
 			packageReferences = (
 				3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */,
 				3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
-				3B9222112B82A3930050AB55 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				3BD3C8902B84F1C500954902 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			productRefGroup = 3BAD9F9E2B67AD14006263DF /* Products */;
@@ -359,6 +363,7 @@
 				3B9221FE2B7F5F1B0050AB55 /* NewsViewController.swift in Sources */,
 				3BAD9FA52B67AD14006263DF /* ViewController.swift in Sources */,
 				3B48A7B42B725ADA00FC8FA1 /* Song.swift in Sources */,
+				3BD3C8952B852BF900954902 /* SendableAVMetadataItem.swift in Sources */,
 				3BAD9FAB2B67AD14006263DF /* RadioJemne.xcdatamodeld in Sources */,
 				3B2EA98F2B7B960F00D39235 /* News.swift in Sources */,
 				3B9222062B7FC1030050AB55 /* NewsTableViewCell.swift in Sources */,
@@ -734,14 +739,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.6.0;
-			};
-		};
-		3B9222112B82A3930050AB55 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.18.11;
 			};
 		};
 		3BD3C8902B84F1C500954902 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {

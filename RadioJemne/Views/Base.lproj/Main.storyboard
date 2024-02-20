@@ -516,7 +516,7 @@
                 <viewController storyboardIdentifier="WebViewController" id="Gf7-Da-jda" customClass="WebViewController" customModule="RadioJemne" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K7H-0A-wbR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bnh-mu-cZx">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
@@ -540,7 +540,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Dyc-JL-KSQ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Dyc-JL-KSQ" firstAttribute="trailing" secondItem="Bnh-mu-cZx" secondAttribute="trailing" id="3JX-ZX-Mto"/>
                             <constraint firstItem="0Gb-yd-EHk" firstAttribute="top" secondItem="Dyc-JL-KSQ" secondAttribute="top" id="Bp0-AE-SQi"/>

@@ -9,8 +9,6 @@ import UIKit
 import AVFoundation
 import MediaPlayer
 
-//import VolumeButtonHandler
-
 protocol StreamMusicDelegate: AnyObject {
     func sendVolumeValue(_ streamMusic: StreamMusic, volumeChangedTo: Float)
     func sendSongData(_ streamMusic: StreamMusic, songTitle: String, songArtist: String)
@@ -23,20 +21,15 @@ class StreamMusic: NSObject {
     var artist = ""
     var title = "Radio Jemne"
     let image = UIImage(resource: ImageResource.rjMusic)
-    var volumeValue: Float!
     
+    var volumeValue: Float!
     var player: AVPlayer? = nil
     var playerItem: AVPlayerItem!
     var metadataOutput: AVPlayerItemMetadataOutput?
     weak var delegate: StreamMusicDelegate?
-//    private var volumeHandler = VolumeButtonHandler()
-    
     
     @discardableResult @objc public func play() -> MPRemoteCommandHandlerStatus {
         setUpConnection()
-        guard let player else {
-            return .commandFailed
-        }
         return .success
     }
  
@@ -44,6 +37,7 @@ class StreamMusic: NSObject {
         guard let player else {
             return .commandFailed
         }
+        
         player.pause()
         return .success
     }
@@ -65,20 +59,6 @@ class StreamMusic: NSObject {
             }
         }
     }
-    
-//    func handleVolumeChange() {
-//        
-//        volumeHandler.upBlock = {
-//            self.volumeValue = self.volumeHandler.currentVolume
-//            self.delegate?.sendVolumeValue(self, volumeChangedTo: self.volumeValue)
-//            debugPrint("Up block")
-//        }
-//        volumeHandler.downBlock = {
-//            self.volumeValue = self.volumeHandler.currentVolume
-//            self.delegate?.sendVolumeValue(self, volumeChangedTo: self.volumeValue)
-//            debugPrint("Down block")
-//        }
-//    }
     
     private func setUpConnection() {
         let url = URL(string: urlString)!
@@ -159,13 +139,21 @@ class StreamMusic: NSObject {
     }
 }
 
-
 extension StreamMusic: AVPlayerItemMetadataOutputPushDelegate {
+    
     func metadataOutput(_ output: AVPlayerItemMetadataOutput, didOutputTimedMetadataGroups groups: [AVTimedMetadataGroup], from track: AVPlayerItemTrack?) {
         for group in groups {
             for item in group.items {
-                if let songData = item.value as? String {
-                    extractMetadata(from: songData)
+                let sendableItem = SendableAVMetadataItem(item: item)
+                Task {
+                    do {
+                        let songData = try await sendableItem.loadValue()
+                        if let songData = songData {
+                            extractMetadata(from: songData)
+                        }
+                    } catch {
+                        print("Error loading timed metadata: \(error)")
+                    }
                 }
             }
         }

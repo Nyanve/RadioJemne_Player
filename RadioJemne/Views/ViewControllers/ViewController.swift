@@ -34,6 +34,7 @@ class ViewController: UIViewController {
     let mPhoneNumber = "1111111111"
     var isPlayButtonOn: Bool = false
     var isHistoryOn: Bool = false
+    
     let stream = StreamMusic()
     let networkManager = NetworkManager()
     var viewContext = CoreDataManager.shared.persistentContainer.viewContext
@@ -119,7 +120,6 @@ class ViewController: UIViewController {
         if isPlayButtonOn {
             stream.play()
             playPauseButton.setImage(UIImage(resource: .pauseIcon), for: .normal)
-        
         } else {
             stream.pause()
             playPauseButton.setImage(UIImage(resource: .playIcon), for: .normal)
@@ -152,9 +152,10 @@ class ViewController: UIViewController {
 
     private func shareLink() {
         guard let url = URL(string: "https://www.radiomelody.sk/stream/") else {
-            basicError(message: "Unable to share music. Please try again later")
+            basicError(message: "Nieje možné zdieľat hudbu. Prosím skúste neskôr")
             return
         }
+        
         let items = [url]
         let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
         present(activityViewController, animated: true)
@@ -218,34 +219,37 @@ class ViewController: UIViewController {
         if let phoneCallURL = URL(string: "telprompt://\(mPhoneNumber)") {
             let application:UIApplication = UIApplication.shared
             guard application.canOpenURL(phoneCallURL) else {
-                basicError(message: "Unable to call number. Please try again later")
+                basicError(message: "Neieje možné spustit hovor. Prosím skúste neskôr")
                 return
             }
-                application.open(phoneCallURL, options: [:], completionHandler: nil)
+            
+            application.open(phoneCallURL, options: [:], completionHandler: nil)
         }
     }
     
     private func messageToRadio() {
         guard MFMessageComposeViewController.canSendText() else {
-            basicError(message: "Unable to send message. Please try again later")
+            basicError(message: "Nieje možné zaslat spravu. Prosím skúste neskôr")
             return
         }
-            let controller = MFMessageComposeViewController()
-            controller.body = ""
-            controller.recipients = [mPhoneNumber]
-            controller.messageComposeDelegate = self
-            self.present(controller, animated: true, completion: nil)
+        
+        let controller = MFMessageComposeViewController()
+        controller.body = ""
+        controller.recipients = [mPhoneNumber]
+        controller.messageComposeDelegate = self
+        self.present(controller, animated: true, completion: nil)
     }
     
     private func sendEmail(address: String) {
         guard MFMailComposeViewController.canSendMail() else {
-            basicError(message: "Unable to send email. Please try again later")
+            basicError(message: "Nieje možné zaslat e-mail. Prosím skúste neskôr")
             return
         }
+        
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([address])
-            mail.setMessageBody("You're so awesome!", isHTML: true)
+            mail.setMessageBody("Ste užasný!", isHTML: true)
             present(mail, animated: true)
     }
     
@@ -253,14 +257,14 @@ class ViewController: UIViewController {
         let studio = "studio@radiomelody.sk"
         let radio = "radiomelody@radiomelody.sk"
         
-        let alert = UIAlertController(title: "Chose address", message: "Please select recipient address", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: "Zvoľte adresu", message: "Prosím zvoľte adresu prijímateľa", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: studio, style: .default, handler: { (_) in
             self.sendEmail(address: studio)
         }))
         alert.addAction(UIAlertAction(title: radio, style: .default, handler: { (_) in
             self.sendEmail(address: radio)
         }))
-        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: { (_) in
+        alert.addAction(UIAlertAction(title: "Zrušit", style: .cancel, handler: { (_) in
         }))
     
         self.present(alert, animated: true, completion: {
@@ -268,13 +272,12 @@ class ViewController: UIViewController {
     }
     
     private func basicError(message: String) {
-        let error = UIAlertController(title: "Error occurred 😏", message: message, preferredStyle: .alert)
+        let error = UIAlertController(title: "Naskytol sa error", message: message, preferredStyle: .alert)
         error.addAction(UIAlertAction(title: "Ok", style: .cancel))
         
         self.present(error, animated: true)
     }
 }
-
 
 extension ViewController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -292,7 +295,7 @@ extension ViewController: StreamMusicDelegate {
     func playerFailed() {
         isPlayButtonOn.toggle()
     
-        let stringWithImage = NSMutableAttributedString(string: "We were unable to set up player. Pleas try again")
+        let stringWithImage = NSMutableAttributedString(string: "Nebolo možné spustit prehrávač. Prosím skúste znova")
         let imageAttachment = NSTextAttachment()
         imageAttachment.image = UIImage(resource: .varningIcon)
         let completeImageString = NSAttributedString(attachment: imageAttachment)
@@ -304,9 +307,11 @@ extension ViewController: StreamMusicDelegate {
     }
     
     func sendSongData(_ streamMusic: StreamMusic, songTitle: String, songArtist: String) {
-        songNameLabel.text = songTitle
-        artistLabel.text = songArtist
-        updateAndLoadHistoryData()
+        DispatchQueue.main.async {
+            self.songNameLabel.text = songTitle
+            self.artistLabel.text = songArtist
+            self.updateAndLoadHistoryData()
+        }
         return
     }
     
@@ -341,7 +346,6 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController: NSFetchedResultsControllerDelegate {
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.beginUpdates()
     }

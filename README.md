@@ -16,7 +16,7 @@ Radio Jemné is available for download on Github. Simply clone git-Hub library.
 
 ## Requirements
 
-- Compatible with iOS devices running iOS 12.0 or later.
+- Compatible with iOS devices running iOS 17.2 or later.
 
 ## Author
 
