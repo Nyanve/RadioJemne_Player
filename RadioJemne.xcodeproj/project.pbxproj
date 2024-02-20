@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B2EA98F2B7B960F00D39235 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2EA98E2B7B960F00D39235 /* News.swift */; };
+		3B42C5DF2B778EC100A4483D /* VolumeButtonHandler in Frameworks */ = {isa = PBXBuildFile; productRef = 3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */; };
+		3B48A7B22B724F5800FC8FA1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7B12B724F5800FC8FA1 /* CoreDataManager.swift */; };
+		3B48A7B42B725ADA00FC8FA1 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7B32B725ADA00FC8FA1 /* Song.swift */; };
+		3B48A7B62B72601200FC8FA1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7B52B72601200FC8FA1 /* NetworkManager.swift */; };
+		3B48A7BC2B739D1A00FC8FA1 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7BB2B739D1A00FC8FA1 /* SongTableViewCell.swift */; };
+		3B4FEAD12B82A63400F8E678 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3B4FEAD02B82A63400F8E678 /* SDWebImageSwiftUI */; };
+		3B6D1C162B83DA28002C6284 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D1C152B83DA28002C6284 /* WebViewController.swift */; };
+		3B6D1C1A2B84EB4F002C6284 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D1C192B84EB4F002C6284 /* File.swift */; };
+		3B9221FE2B7F5F1B0050AB55 /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9221FD2B7F5F1B0050AB55 /* NewsViewController.swift */; };
+		3B9222032B7F9AFB0050AB55 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = 3B9222022B7F9AFB0050AB55 /* SwiftyXMLParser */; };
+		3B9222062B7FC1030050AB55 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9222052B7FC1030050AB55 /* NewsTableViewCell.swift */; };
+		3B9222082B8119020050AB55 /* SongHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */; };
 		3BAD9FA12B67AD14006263DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA02B67AD14006263DF /* AppDelegate.swift */; };
 		3BAD9FA32B67AD14006263DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */; };
 		3BAD9FA52B67AD14006263DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FA42B67AD14006263DF /* ViewController.swift */; };
@@ -17,6 +30,7 @@
 		3BAD9FBB2B67AD16006263DF /* RadioJemneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FBA2B67AD16006263DF /* RadioJemneTests.swift */; };
 		3BAD9FC52B67AD16006263DF /* RadioJemneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC42B67AD16006263DF /* RadioJemneUITests.swift */; };
 		3BAD9FC72B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC62B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift */; };
+		3BFD53C52B6D02AE00D765BA /* StreamMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +51,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B2EA98E2B7B960F00D39235 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		3B48A7B12B724F5800FC8FA1 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		3B48A7B32B725ADA00FC8FA1 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		3B48A7B52B72601200FC8FA1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3B48A7BB2B739D1A00FC8FA1 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
+		3B6D1C152B83DA28002C6284 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		3B6D1C192B84EB4F002C6284 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		3B9221FD2B7F5F1B0050AB55 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		3B9222052B7FC1030050AB55 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SongHistory+CoreDataClass.swift"; path = "../../../../../.Trash/SongHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
 		3BAD9F9D2B67AD14006263DF /* RadioJemne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RadioJemne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD9FA02B67AD14006263DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +75,7 @@
 		3BAD9FC02B67AD16006263DF /* RadioJemneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RadioJemneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BAD9FC42B67AD16006263DF /* RadioJemneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioJemneUITests.swift; sourceTree = "<group>"; };
 		3BAD9FC62B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioJemneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMusic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B4FEAD12B82A63400F8E678 /* SDWebImageSwiftUI in Frameworks */,
+				3B42C5DF2B778EC100A4483D /* VolumeButtonHandler in Frameworks */,
+				3B9222032B7F9AFB0050AB55 /* SwiftyXMLParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +106,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B42C5D82B7663C800A4483D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD9FAE2B67AD16006263DF /* LaunchScreen.storyboard */,
+				3BAD9FA02B67AD14006263DF /* AppDelegate.swift */,
+				3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */,
+				3BAD9FA92B67AD14006263DF /* RadioJemne.xcdatamodeld */,
+				3BAD9FAC2B67AD16006263DF /* Assets.xcassets */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		3B42C5DA2B766AAE00A4483D /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */,
+				3B48A7B12B724F5800FC8FA1 /* CoreDataManager.swift */,
+				3B48A7B52B72601200FC8FA1 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3B42C5DB2B766ACF00A4483D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3B48A7B32B725ADA00FC8FA1 /* Song.swift */,
+				3B2EA98E2B7B960F00D39235 /* News.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3B42C5DC2B777BFB00A4483D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD9FA62B67AD14006263DF /* Main.storyboard */,
+				3B6D1C182B84B06B002C6284 /* ViewControllers */,
+				3B6D1C172B84B047002C6284 /* ViewCells */,
+				3B6D1C192B84EB4F002C6284 /* File.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3B6D1C172B84B047002C6284 /* ViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3B9222052B7FC1030050AB55 /* NewsTableViewCell.swift */,
+				3B48A7BB2B739D1A00FC8FA1 /* SongTableViewCell.swift */,
+			);
+			path = ViewCells;
+			sourceTree = "<group>";
+		};
+		3B6D1C182B84B06B002C6284 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3BAD9FA42B67AD14006263DF /* ViewController.swift */,
+				3B6D1C152B83DA28002C6284 /* WebViewController.swift */,
+				3B9221FD2B7F5F1B0050AB55 /* NewsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		3B7BF1B22B6BCF9400BCC74E /* SongHistoryData */ = {
+			isa = PBXGroup;
+			children = (
+				3B9222072B8119020050AB55 /* SongHistory+CoreDataClass.swift */,
+			);
+			path = SongHistoryData;
+			sourceTree = "<group>";
+		};
 		3BAD9F942B67AD14006263DF = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +198,12 @@
 		3BAD9F9F2B67AD14006263DF /* RadioJemne */ = {
 			isa = PBXGroup;
 			children = (
-				3BAD9FA02B67AD14006263DF /* AppDelegate.swift */,
-				3BAD9FA22B67AD14006263DF /* SceneDelegate.swift */,
-				3BAD9FA42B67AD14006263DF /* ViewController.swift */,
-				3BAD9FA62B67AD14006263DF /* Main.storyboard */,
-				3BAD9FAC2B67AD16006263DF /* Assets.xcassets */,
-				3BAD9FAE2B67AD16006263DF /* LaunchScreen.storyboard */,
+				3B42C5DC2B777BFB00A4483D /* Views */,
+				3B42C5DB2B766ACF00A4483D /* Models */,
+				3B42C5DA2B766AAE00A4483D /* Managers */,
+				3B42C5D82B7663C800A4483D /* Support */,
+				3B7BF1B22B6BCF9400BCC74E /* SongHistoryData */,
 				3BAD9FB12B67AD16006263DF /* Info.plist */,
-				3BAD9FA92B67AD14006263DF /* RadioJemne.xcdatamodeld */,
 			);
 			path = RadioJemne;
 			sourceTree = "<group>";
@@ -146,6 +241,11 @@
 			dependencies = (
 			);
 			name = RadioJemne;
+			packageProductDependencies = (
+				3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */,
+				3B9222022B7F9AFB0050AB55 /* SwiftyXMLParser */,
+				3B4FEAD02B82A63400F8E678 /* SDWebImageSwiftUI */,
+			);
 			productName = RadioJemne;
 			productReference = 3BAD9F9D2B67AD14006263DF /* RadioJemne.app */;
 			productType = "com.apple.product-type.application";
@@ -218,6 +318,12 @@
 				Base,
 			);
 			mainGroup = 3BAD9F942B67AD14006263DF;
+			packageReferences = (
+				3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */,
+				3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
+				3B9222112B82A3930050AB55 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				3B4FEACF2B82A63400F8E678 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = 3BAD9F9E2B67AD14006263DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,10 +367,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B48A7B62B72601200FC8FA1 /* NetworkManager.swift in Sources */,
+				3BFD53C52B6D02AE00D765BA /* StreamMusic.swift in Sources */,
+				3B48A7BC2B739D1A00FC8FA1 /* SongTableViewCell.swift in Sources */,
+				3B9221FE2B7F5F1B0050AB55 /* NewsViewController.swift in Sources */,
 				3BAD9FA52B67AD14006263DF /* ViewController.swift in Sources */,
+				3B48A7B42B725ADA00FC8FA1 /* Song.swift in Sources */,
 				3BAD9FAB2B67AD14006263DF /* RadioJemne.xcdatamodeld in Sources */,
+				3B2EA98F2B7B960F00D39235 /* News.swift in Sources */,
+				3B9222062B7FC1030050AB55 /* NewsTableViewCell.swift in Sources */,
 				3BAD9FA12B67AD14006263DF /* AppDelegate.swift in Sources */,
+				3B6D1C1A2B84EB4F002C6284 /* File.swift in Sources */,
+				3B48A7B22B724F5800FC8FA1 /* CoreDataManager.swift in Sources */,
 				3BAD9FA32B67AD14006263DF /* SceneDelegate.swift in Sources */,
+				3B6D1C162B83DA28002C6284 /* WebViewController.swift in Sources */,
+				3B9222082B8119020050AB55 /* SongHistory+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,8 +569,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -461,9 +577,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = beginer.RadioJemne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -480,8 +600,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -489,9 +608,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = beginer.RadioJemne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -611,6 +734,59 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CipherBitCorp/VolumeButtonHandler.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		3B4FEACF2B82A63400F8E678 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
+		3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yahoojapan/SwiftyXMLParser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+		3B9222112B82A3930050AB55 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.11;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */;
+			productName = VolumeButtonHandler;
+		};
+		3B4FEAD02B82A63400F8E678 /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B4FEACF2B82A63400F8E678 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+		3B9222022B7F9AFB0050AB55 /* SwiftyXMLParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;
+			productName = SwiftyXMLParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		3BAD9FA92B67AD14006263DF /* RadioJemne.xcdatamodeld */ = {
