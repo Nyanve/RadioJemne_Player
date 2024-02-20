@@ -425,7 +425,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="350"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceholderImage" translatesAutoresizingMaskIntoConstraints="NO" id="JUy-pN-4ib" userLabel="ThumbnailImage">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholderImg" translatesAutoresizingMaskIntoConstraints="NO" id="JUy-pN-4ib" userLabel="ThumbnailImage">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="220"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="220" id="9ZH-OK-8wb"/>
@@ -586,7 +586,6 @@
     <resources>
         <image name="Arrow" width="17.666666030883789" height="15"/>
         <image name="Nechajte nám e-mail" width="128" height="128"/>
-        <image name="PlaceholderImage" width="375" height="250"/>
         <image name="RJBackroundScreen" width="375" height="667"/>
         <image name="RJLogo" width="238" height="238"/>
         <image name="XIcon" width="12" height="12"/>
@@ -596,6 +595,7 @@
         <image name="messageIcon" width="20" height="20"/>
         <image name="micIcon" width="20" height="20"/>
         <image name="nowPlayingIcon" width="16" height="16"/>
+        <image name="placeholderImg" width="375" height="250"/>
         <image name="playIcon" width="25" height="31.666666030883789"/>
         <image name="shareIcon" width="16" height="18"/>
         <image name="showHistoryIcon" width="16.333333969116211" height="16.333333969116211"/>
