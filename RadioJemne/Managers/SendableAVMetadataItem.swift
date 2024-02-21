@@ -9,13 +9,9 @@ import Foundation
 import MediaPlayer
 
 struct SendableAVMetadataItem {
-    private let item: AVMetadataItem
-    
-    init(item: AVMetadataItem) {
-        self.item = item
-    }
+    let item: AVMetadataItem
     
     func loadValue() async throws -> String? {
-        return try await item.load(.value) as? String
+        return try await self.item.load(.value) as? String
     }
 }

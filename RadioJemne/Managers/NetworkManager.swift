@@ -10,8 +10,12 @@ import SwiftyXMLParser
 
 class NetworkManager {
     
-    let decoder = JSONDecoder()
-    let dateFormatter = DateFormatter()
+    private let decoder = JSONDecoder()
+    private let dateFormatter = DateFormatter()
+    
+    init() {
+        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+    }
     
     func getSongHistory() async throws -> [Song] {
         let endpoint = "https://www.radiomelody.sk/wp-json/radio/v1/playlist"
@@ -54,18 +58,12 @@ class NetworkManager {
         let xml = XML.parse(data)
         
         var newsArray: [News] = []
-        dateFormatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
         
         for item in xml["rss", "channel", "item"] {
-            guard let title = item["title"].text,
-                  let url = item["link"].text,
-                  let dateString = item["pubDate"].text,
-                  let datePublished = dateFormatter.date(from: dateString),
-                  let summaryCDATA = item["description"].element?.CDATA,
-                  let summary = String(data: summaryCDATA, encoding: .utf8),
-                  let thumbnailURL = item["media:thumbnail"].attributes["url"] ?? nil
+            guard let title = item["title"].text, let url = item["link"].text, let dateString = item["pubDate"].text, let datePublished = dateFormatter.date(from: dateString), let summaryCDATA = item["description"].element?.CDATA, let summary = String(data: summaryCDATA, encoding: .utf8), let thumbnailURL = item["media:thumbnail"].attributes["url"] ?? nil
             else {
-                throw NetworkError.invalidData
+                debugPrint("Invalid data")
+                continue
             }
             
             let news = News(title: title, summary: summary, url: url, thumbnailURL: thumbnailURL, datePublished: datePublished)

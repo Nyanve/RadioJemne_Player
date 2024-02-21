@@ -12,20 +12,20 @@ import MediaPlayer
 protocol StreamMusicDelegate: AnyObject {
     func sendVolumeValue(_ streamMusic: StreamMusic, volumeChangedTo: Float)
     func sendSongData(_ streamMusic: StreamMusic, songTitle: String, songArtist: String)
-    func playerFailed()
+    func playerFailed(_ streamMusic: StreamMusic)
 }
 
 class StreamMusic: NSObject {
     
-    let urlString: String = "https://stream.bauermedia.sk/melody-lo.mp3"
-    var artist = ""
-    var title = "Radio Jemne"
-    let image = UIImage(resource: ImageResource.rjMusic)
+    private let urlString: String = "https://stream.bauermedia.sk/melody-lo.mp3"
+    private var artist = ""
+    private var title = "Radio Jemne"
+    private let image = UIImage(resource: .rjMusic)
+    private var playerItem: AVPlayerItem!
+    private var metadataOutput: AVPlayerItemMetadataOutput?
     
-    var volumeValue: Float!
     var player: AVPlayer? = nil
-    var playerItem: AVPlayerItem!
-    var metadataOutput: AVPlayerItemMetadataOutput?
+    
     weak var delegate: StreamMusicDelegate?
     
     @discardableResult @objc public func play() -> MPRemoteCommandHandlerStatus {
@@ -54,7 +54,7 @@ class StreamMusic: NSObject {
             if let newStatusNumber = change?[.newKey] as? NSNumber,
                let newStatus = AVPlayer.Status(rawValue: newStatusNumber.intValue) {
                 if newStatus == .failed {
-                    delegate?.playerFailed()
+                    delegate?.playerFailed(self)
                 }
             }
         }
@@ -67,7 +67,6 @@ class StreamMusic: NSObject {
         playerItem.add(metadataOutput!)
         
         player = AVPlayer(playerItem: self.playerItem)
-        player?.volume = 0.5
         player?.play()
         
         do {
@@ -140,7 +139,6 @@ class StreamMusic: NSObject {
 }
 
 extension StreamMusic: AVPlayerItemMetadataOutputPushDelegate {
-    
     func metadataOutput(_ output: AVPlayerItemMetadataOutput, didOutputTimedMetadataGroups groups: [AVTimedMetadataGroup], from track: AVPlayerItemTrack?) {
         for group in groups {
             for item in group.items {

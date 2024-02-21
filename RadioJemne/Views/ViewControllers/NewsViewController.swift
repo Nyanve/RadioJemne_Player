@@ -13,8 +13,8 @@ class NewsViewController: UIViewController {
     
     @IBOutlet weak var newsTableView: UITableView!
     
-    let networkManager = NetworkManager()
-    var viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    private let networkManager = NetworkManager()
+    private var viewContext = CoreDataManager.shared.persistentContainer.viewContext
     
     lazy var fetchedResultsController: NSFetchedResultsController<NewsList> = {
         let fetchRequest: NSFetchRequest<NewsList> = NewsList.fetchRequest()
@@ -99,7 +99,6 @@ extension NewsViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension NewsViewController: NSFetchedResultsControllerDelegate {
-    
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         newsTableView.beginUpdates()
     }

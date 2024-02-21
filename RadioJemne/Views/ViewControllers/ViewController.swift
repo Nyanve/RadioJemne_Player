@@ -31,14 +31,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var playPauseButton: UIButton!
     @IBOutlet weak var closeHistoryButton: UIButton!
     
-    let mPhoneNumber = "1111111111"
-    var isPlayButtonOn: Bool = false
-    var isHistoryOn: Bool = false
+    private let mPhoneNumber = "1111111111"
+    private var isPlayButtonOn: Bool = false
+    private var isHistoryOn: Bool = false
     
-    let stream = StreamMusic()
-    let networkManager = NetworkManager()
-    var viewContext = CoreDataManager.shared.persistentContainer.viewContext
-    let swipeGesture = UISwipeGestureRecognizer()
+    private let stream = StreamMusic()
+    private let networkManager = NetworkManager()
+    private var viewContext = CoreDataManager.shared.persistentContainer.viewContext
+    private let swipeGesture = UISwipeGestureRecognizer()
     
     lazy var fetchedResultsController: NSFetchedResultsController<SongHistory> = {
         let fetchRequest: NSFetchRequest<SongHistory> = SongHistory.fetchRequest()
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
         do {
             try fetchedResultsController.performFetch()
         } catch {
-            debugPrint("fetch", error)
+            debugPrint("Fetch", error)
         }
     }
     
@@ -152,7 +152,7 @@ class ViewController: UIViewController {
 
     private func shareLink() {
         guard let url = URL(string: "https://www.radiomelody.sk/stream/") else {
-            basicError(message: "Nieje možné zdieľat hudbu. Prosím skúste neskôr")
+            basicError(message: "Nieje možné zdieľat stream. Prosím skúste neskôr")
             return
         }
         
@@ -229,7 +229,7 @@ class ViewController: UIViewController {
     
     private func messageToRadio() {
         guard MFMessageComposeViewController.canSendText() else {
-            basicError(message: "Nieje možné zaslat spravu. Prosím skúste neskôr")
+            basicError(message: "Nieje možné poslať správu. Prosím skúste neskôr")
             return
         }
         
@@ -242,7 +242,7 @@ class ViewController: UIViewController {
     
     private func sendEmail(address: String) {
         guard MFMailComposeViewController.canSendMail() else {
-            basicError(message: "Nieje možné zaslat e-mail. Prosím skúste neskôr")
+            basicError(message: "Nieje možné poslať e-mail. Prosím skúste neskôr")
             return
         }
         
@@ -292,7 +292,7 @@ extension ViewController: MFMessageComposeViewControllerDelegate {
 }
 
 extension ViewController: StreamMusicDelegate {
-    func playerFailed() {
+    func playerFailed(_ streamMusic: StreamMusic) {
         isPlayButtonOn.toggle()
     
         let stringWithImage = NSMutableAttributedString(string: "Nebolo možné spustit prehrávač. Prosím skúste znova")
