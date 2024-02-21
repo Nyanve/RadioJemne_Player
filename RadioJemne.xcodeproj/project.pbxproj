@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B053FDF2B863177002787E9 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 3B053FDE2B863177002787E9 /* SDWebImage */; };
+		3B053FE12B863177002787E9 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B053FE02B863177002787E9 /* SDWebImageMapKit */; };
 		3B2EA98F2B7B960F00D39235 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2EA98E2B7B960F00D39235 /* News.swift */; };
 		3B42C5DF2B778EC100A4483D /* VolumeButtonHandler in Frameworks */ = {isa = PBXBuildFile; productRef = 3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */; };
 		3B48A7B22B724F5800FC8FA1 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B48A7B12B724F5800FC8FA1 /* CoreDataManager.swift */; };
@@ -27,7 +29,6 @@
 		3BAD9FBB2B67AD16006263DF /* RadioJemneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FBA2B67AD16006263DF /* RadioJemneTests.swift */; };
 		3BAD9FC52B67AD16006263DF /* RadioJemneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC42B67AD16006263DF /* RadioJemneUITests.swift */; };
 		3BAD9FC72B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD9FC62B67AD16006263DF /* RadioJemneUITestsLaunchTests.swift */; };
-		3BD3C8922B84F1C500954902 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3BD3C8912B84F1C500954902 /* SDWebImageSwiftUI */; };
 		3BD3C8952B852BF900954902 /* SendableAVMetadataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD3C8942B852BF900954902 /* SendableAVMetadataItem.swift */; };
 		3BFD53C52B6D02AE00D765BA /* StreamMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFD53C42B6D02AE00D765BA /* StreamMusic.swift */; };
 /* End PBXBuildFile section */
@@ -82,8 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BD3C8922B84F1C500954902 /* SDWebImageSwiftUI in Frameworks */,
+				3B053FDF2B863177002787E9 /* SDWebImage in Frameworks */,
 				3B42C5DF2B778EC100A4483D /* VolumeButtonHandler in Frameworks */,
+				3B053FE12B863177002787E9 /* SDWebImageMapKit in Frameworks */,
 				3B9222032B7F9AFB0050AB55 /* SwiftyXMLParser in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,7 +237,8 @@
 			packageProductDependencies = (
 				3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */,
 				3B9222022B7F9AFB0050AB55 /* SwiftyXMLParser */,
-				3BD3C8912B84F1C500954902 /* SDWebImageSwiftUI */,
+				3B053FDE2B863177002787E9 /* SDWebImage */,
+				3B053FE02B863177002787E9 /* SDWebImageMapKit */,
 			);
 			productName = RadioJemne;
 			productReference = 3BAD9F9D2B67AD14006263DF /* RadioJemne.app */;
@@ -312,7 +315,7 @@
 			packageReferences = (
 				3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */,
 				3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
-				3BD3C8902B84F1C500954902 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				3B053FDD2B86307B002787E9 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 3BAD9F9E2B67AD14006263DF /* Products */;
 			projectDirPath = "";
@@ -725,6 +728,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3B053FDD2B86307B002787E9 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.11;
+			};
+		};
 		3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CipherBitCorp/VolumeButtonHandler.git";
@@ -741,17 +752,19 @@
 				minimumVersion = 5.6.0;
 			};
 		};
-		3BD3C8902B84F1C500954902 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.6;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3B053FDE2B863177002787E9 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B053FDD2B86307B002787E9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		3B053FE02B863177002787E9 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B053FDD2B86307B002787E9 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
 		3B42C5DE2B778EC100A4483D /* VolumeButtonHandler */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3B42C5DD2B778EC100A4483D /* XCRemoteSwiftPackageReference "VolumeButtonHandler" */;
@@ -761,11 +774,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3B9222012B7F9AFB0050AB55 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;
 			productName = SwiftyXMLParser;
-		};
-		3BD3C8912B84F1C500954902 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3BD3C8902B84F1C500954902 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

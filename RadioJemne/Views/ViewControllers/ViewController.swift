@@ -78,9 +78,6 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    @IBAction func newsButton(_ sender: Any) {
-    }
-    
     @IBAction func showHistoryButton(_ sender: Any) {
         updateAndLoadHistoryData()
         showHistoryView()
